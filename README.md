@@ -6,20 +6,32 @@ Git es una herramienta para control de versiones y GitHub es una plataforma para
 Sitios de descarga
 https://git-scm.com/
 https://github.com/ 
+
+
 Configuración de GIT y GitHub
+
 Se puede hacer a través del comando de Windows (cmd) o el Git Bash del programa, al poner el comando git aparece todos los comandos del mismo o se puede utilizar la ayuda con git --help
 configuración global: 
 es la configuración inicial donde se declara los parámetros del usuario que está utilizando. 
 1. git config --global  user.name “nombre”  //nombre del usuario
 2. git config --global  user.email “correo electrónico”  //mail del usuario
 3. git config --global  color.ui true  //colores identificatorios
+
+   
 Configurar las llaves SSH
+
 Es la forma de conectar git de nuestra cuenta (pc) con github de la nube, a través del protocolo SSH. Es decir, crear un puente entre ambos, para configurar las llaves se utiliza el comando ssh-keygen -t rsa -b 4096 -C “mi mail”, crea una llave que se guardara en usuarios/nameUser/.ssh, generando 2 archivos (id_rsa y id_rsa.pub).
 Estos archivos los vamos a ingresar en la web de mi GitHub en setting -> SSH and GPG keys -> new SSH keys, pondremos un título a modo informativo de la computadora y la llave se hará a través del comando de línea (de la consola de git) clip <~/.ssh/id_rsa.pub (sería como el comando copiar de Windows), y se pegará en el cuadro de la llave (key), la cual se generará para enlazar ambas partes.
+
+
 Crear repositorio en GitHub
+
 En nuestro usuario de la página web, vamos a Repostories, elegir el botón new, se elige el nombre del repositorio y se puede ingresar una descripción (opcional), elegir el tipo (public/private), si se elige la segunda opción debe ser pago, y si queremos generar un archivo de texto plano con los datos del mismo, checar Add a README file, se debe seleccionar salvo que se esté importando un repositorio. Ultimo paso, crear el repositorio.
+
 Clonar el repositorio a la computadora
+
 Dentro del repositorio de GitHub
+
 1. seleccionar el botón code
 2. Clonar por medio de SSH (copiar el dato del repo), también se puede hacer por HTTPS o GitHub CLI. 
 Dentro del Git Bash (alt+F8 para limpiar la pantalla)
@@ -41,7 +53,10 @@ que comienzan con !, permite realizar excepciones (niega el patrón).
 que terminan con /, solo se aplicará sobre directorios.
 utilizar * como comodín.
 patrones a través de expresiones regulares.
+
+
 Comandos básicos de Git
+
 git status ver el estado del directorio de trabajo y del área del entorno de ensayo. Permite ver los cambios que se han preparados, los que no y los archivos en los que Git no va a realizar seguimiento. 
 git commit -m “comentario” confirma (hace una captura) de una instantánea de los cambios preparados en este momento.  las opciones son las siguientes: -m permite escribir un comentario (debe ser menor a 50 caracteres), el cual va seguido entre comillas dobles.
 -a confirma todos los archivos modificados
@@ -68,7 +83,10 @@ Se puede poner un comentario por cada línea modificada, haciendo click en el si
 En el icono  sirve para  agregar una sugerencia.
 A veces se puede hacer un pull request pero un merge (conflicto sobre un pedazo de código), ejemplo: desarrollador-1 agrega un condicional (if) al código, pero el desarrollador-2 borra ese condicional, entonces GitHub no sabe a quién hacer caso. En la solapa de pull request aparecen los conflictos de interés.
 Solución, poner los últimos cambios en mi main (local) con git fetch, después un git checkout a mi rama. Con git merge (en git bash) va aparecer los conflictos, y lo solucionamos. Paso siguiente hacer un commit (indicando que se resolvió el conflicto) y posteriormente un push a main.
+
+
 Guía para abrir un Pull Request
+
 Haz un fork del repositorio con el que deseas contribuir haciendo click en el botón de la cabecera del repositorio. Deberás haber hecho login en tu cuenta de GitHub.
 Cuando esté completado se abrirá la página con tu copia del repositorio bifurcado, pero de momento solo existe en GitHub. Deberás clonarlo en tu equipo local.
 Ahora puedes realizar los cambios editando el código o la documentación en el repositorio clonado a partir del fork
@@ -76,8 +94,12 @@ Cuando estés satisfecho con los cambios, sigue el procedimiento normal de traba
 En el momento en que tus cambios sean completos, y corrijan o mejoren la característica que tenías pensado aportar, ya sea código o documentación, puedes hacer push al repositorio.
 En estos momentos tus cambios estén en el repositorio bifurcado, no en el original, de manera que debemos proceder a comunicar los cambios. Si entras en el repositorio, verás una nueva bandera indicando que se ha hecho push en una nueva rama y que esta rama se puede añadir al repositorio original.
 Haz click en Compare and Pull Request, se abrirá una página de discusión. En ella podrás incluir un título y una descripción opcional. Es importante que aportes toda la información necesaria para comprender por qué hiciste los cambios y en qué se basa tu mejora. El mantenedor del proyecto necesita poder determinar si el cambio es útil y/o necesario (recuerda que el mantenedor del proyecto puede tener en mente otras mejoras o cambios que pueden ser generadores de conflicto con tus aportaciones).
+
+
 Envía el pull request
+
 Unir (Merge)
+
 Permite tomas las líneas independientes, creadas en las ramas (branches) e integrar en una sola rama (generalmente la principal).  Hace una fusión de las ramas. el comando a utilizar es git merge ramaAgregar.
 Historial de repositorios
 Se puede ver a través del comando git log el historial de un repositorio ordenado cronológicamente. Este comando es muy versátil y muestra la historia del repositorio en distintos formatos, dependiendo de los parámetros que se le pasen.
@@ -90,11 +112,17 @@ git log [núm. de SHA] trae un commit especifico (ejemplo: git log 7752b22).
 git log --graph muestra como un gráfico, este comando tiene opciones --decorate () y --all ()
 git reset --hard regresa al último commit realizado (resetea todos los archivos implicados).
 git rm --cached nombreDelArchivo eliminar archivos sin eliminar su historial del sistema de versiones. Si se desea recuperar ese archivo, ir al último commit antes de haber borrado el mismo.
+
+
 Comparación de modificaciones
+
 el comando git diff muestra las diferencias en los orígenes de datos (confirmaciones, ramas, archivos, etc.). Se suele utilizar junto a git status y git log para analizar el estado actual de un repositorio de Git.
 git diff muestra las diferencias de los archivos guardados con las modificaciones pendientes de confirmar (commit).
 git diff identificadorCommit nombreArchivo muestra las diferencias entre los dos commits.
+
+
 Release
+
 Se utiliza en GitHub, sirve para liberar, es como cuando ya está listo el proyecto, es como cuando en etapa de desarrollo, listo para la etapa de producción. Es como publicar el proyecto.
 
 
@@ -105,10 +133,15 @@ Se utiliza en GitHub, sirve para liberar, es como cuando ya está listo el proye
 5. agregar un archivo binario, por ejemplo, un ejecutable (.exe, .apk, etc.), en caso que se pudiese.
 6. generar el Release
 7. Se genera el proyecto, creando archivos para su descarga.
+
+   
 GitHub Issue
+
 es una nota en un repositorio que trata de llamar la atención sobre un problema. Puede ser un error a corregir, una petición para añadir una nueva opción o característica, una pregunta para aclarar algún tema que no está correctamente aclarado o muchas otras cosas diferentes.
 Por cada Issues es conveniente que se abra un branch para que se resuelva el error.
+
 Guía para abrir un Issue
+
 Asegúrate de que tu petición no se ha hecho ya con anterioridad. Evita duplicar peticiones.  
 Si nadie ha hecho un issue con tu petición. Haz click en la pestaña Issues de la barra lateral.
 Haz click en el botón de New Issue
@@ -117,7 +150,10 @@ Explica el problema, cuál es el resultado esperado y cual es el realmente obten
 Detalla uno a uno los pasos para repetir el problema. Incluye detalles como el sistema operativo, el navegador utilizado, la librería, o las versiones del software implicados en el mismo.
 Pega los mensajes de error o el contenido de los logs en el mismo pull request o en un Gist. En caso de pegarlo en el propio texto abre y cierra con tres acentos franceses así: ``` que permiten que el código se muestre correctamente.
 Haz click en Submit New Issue cuando hayas terminado. Ahora este Issue tiene una URL permanente que puedes referenciar para compartir.
+
+
 GitHub Profile
+
 Es para personalizar el perfil del usuario, es como crear una bibliografía del usuario. Se puede crear un archivo de README a la raíz de un repositorio públic con el mismo nombre que el nombre del perfil.
 Las personas que lo visiten podrán ver la siguiente información:
 ver una cronología de tu actividad de colaboración, como las propuestas y las solicitudes de extracción que has abierto, las confirmaciones que has realizado y las solicitudes de extracción que has revisado. Puedes elegir mostrar solo las contribuciones públicas o también incluir las contribuciones privadas, anonimizadas. 
